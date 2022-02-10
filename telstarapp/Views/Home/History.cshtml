@@ -1,34 +1,86 @@
 ﻿@{
     ViewBag.Title = "History";
-    @
+    List<Order> Orders = new List<Order>; //get orders from DB
 }
-<h1>Order History</h1>
-<h3></h3>
-<table>
-    <tr>
-        <td>ID</td>
-        <td>Turnover</td>
-        <td>Price to competitors</td>
-        <td>Total price</td>
-        <td>Hours</td>
-        <td>Route</td>
-        <td>Customer paid</td>
-        <td> Employee ID</td>
-        <
-    </tr>
 
-    @foreach (var order in Orders)
-    {
+<h1>Order History</h1>
+<label for="mylist"></label>
+<select id="mylist">
+    <option value="Id">Id</option>
+    <option value="OurPrice">Turnover</option>
+    <option value="OtherPrice">price to others</option>
+    <option value="TotalPrice">Price of order</option>
+    <option value="Hours">Time</option>
+    <option value="EmployeeID">Employee ID</option>
+</select>
+<table id="myTable">
+    <thead>
+        <tr>
+
+            <td>ID</td>
+            <td>Turnover</td>
+            <td>Price to competitors</td>
+            <td>Total price</td>
+            <td>Hours</td>
+            <td>Route</td>
+            <td>Customer paid</td>
+            <td> Employee ID</td>
+
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+
+        @foreach (var order in Orders)
+        {
         <tr>
             <td>
-                @order.ID
+                @order.ID;
             </td>
             <td>
-                @order.
+                @order.OurPrice; $
+            </td>
+            <td>
+                @order.OtherPrice; $
+            </td>
+            <td>
+                @order.OurPrice + @order.OtherPrice; $
+            </td>
+            <td>
+                @order.Hours;
+            </td>
+            <td>
+                @order.Route;
+            </td>
+            <td>
+                @order.PaidStatus.ToString();
+            </td>
+            <td>
+                @order.User;
             </td>
         </tr>
+        }
+    </tbody>
+
+</table>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tb, tr, td, i;
+        input = document.getElementById("mylist");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tb = table.getElementsByTagName("tbody");
+        tr = tb.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
-</table> 
 
-
-<p>Use this area to provide additional information.</p>
+</script>
