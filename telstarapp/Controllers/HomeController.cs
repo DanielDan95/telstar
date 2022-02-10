@@ -22,7 +22,7 @@ namespace telstarapp.Controllers
 
         public ActionResult Main()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
 
             return View();
         }
