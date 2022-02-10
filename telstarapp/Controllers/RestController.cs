@@ -24,14 +24,15 @@ namespace telstarapp.Controllers
            [FromUri] Boolean recommended = false,
            [FromUri] Boolean weapon = false,
            [FromUri] Boolean cautious = false,
-           [FromUri] Boolean refrigerated = false
+           [FromUri] Boolean refrigerated = false,
+           [FromUri] Boolean animal = false
            )
         {
-            if (!isValidInput(from, to, weight, size, recommended, weapon, cautious, refrigerated))
+            if (!isValidInput(from, to, weight, size, recommended, weapon, cautious, refrigerated, animal))
             {
                 return NotFound();
             }
-            var model = new RequestModel(size, from, to, weight, recommended, weapon, cautious, refrigerated);
+            var model = new RequestModel(size, from, to, weight, recommended, weapon, cautious, refrigerated, animal);
             var responseModel = GetResponse(model);
             return Json(responseModel);
         }
@@ -54,7 +55,7 @@ namespace telstarapp.Controllers
             return Json(timeAndPrice);
         }
 
-        private bool isValidInput(String from, String to, Double weight, Dictionary<string, int> size, Boolean recommended, Boolean weapon, Boolean cautious, Boolean refrigerated)
+        private bool isValidInput(String from, String to, Double weight, Dictionary<string, int> size, Boolean recommended, Boolean weapon, Boolean cautious, Boolean refrigerated, Boolean animal)
         {
             return from != null && to != null  && size != null;
         }

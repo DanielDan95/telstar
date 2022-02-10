@@ -7,7 +7,7 @@ namespace telstarapp.Models
 {
     public class RequestModel
     {
-        public RequestModel(Dictionary<string, int> size, string from, string to, double weight, bool recommended, bool weapon, bool cautious, bool refrigerated)
+        public RequestModel(Dictionary<string, int> size, string from, string to, double weight, bool recommended, bool weapon, bool cautious, bool refrigerated, bool animal)
         {
             this.size = size;
             this.from = from;
@@ -17,6 +17,7 @@ namespace telstarapp.Models
             this.weapon = weapon;
             this.cautious = cautious;
             this.refrigerated = refrigerated;
+            this.animal = animal;
         }
 
         public Dictionary<string, int> size { get; set; }
@@ -27,6 +28,7 @@ namespace telstarapp.Models
         public bool weapon { get; set; }
         public bool cautious { get; set; }
         public bool refrigerated { get; set; }
+        public bool animal { get; set; }
     }
     public class TimeAndPrice
     {
