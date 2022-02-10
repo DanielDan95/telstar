@@ -102,5 +102,36 @@ namespace telstarapp.Controllers
                 
             }
         }
+
+        public ActionResult checkRoute()
+        {
+            using (MyEntities db = new MyEntities())
+            {
+
+                City startCity = db.Cities.Where(city => city.Name.Equals("<EnterStartCity")).FirstOrDefault();
+                City endCity = db.Cities.Where(city => city.Name.Equals("<EnterEndCity>")).FirstOrDefault();
+
+                List<City> cities = db.Cities.ToList();
+                List<Connection> connections = db.Connections.ToList();
+                //todo use listsForRouting
+                int price = calculateDistance(cities, connections);
+                int hours = calculatePrice(cities, connections);
+
+
+                return View("homePage");
+            }
+        }
+
+        private int calculateDistance(List<City> cities, List<Connection> connection)
+        {
+            return 0;
+        }
+
+        private int calculatePrice(List<City> cities, List<Connection> connection)
+        {
+            return 0;
+        }
     }
+
+
 }
