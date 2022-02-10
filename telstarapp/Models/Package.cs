@@ -21,10 +21,10 @@ namespace telstarapp.Models
         }
     
         public int PackageId { get; set; }
-        public double Weight { get; set; }
-        public int Height { get; set; }
-        public int Depth { get; set; }
-        public int Width { get; set; }
+        public double WeightInKg { get; set; }
+        public int HeightInCm { get; set; }
+        public int DepthInCm { get; set; }
+        public int WidthInCm { get; set; }
         public Nullable<byte> Recommeded { get; set; }
         public Nullable<int> SpecialGoods { get; set; }
     
