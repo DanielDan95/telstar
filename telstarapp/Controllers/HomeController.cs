@@ -87,6 +87,7 @@ namespace telstarapp.Controllers
         {
             if (isLoggedIn())
             {
+
                 return View("History");
             }
             else
