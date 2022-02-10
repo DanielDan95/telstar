@@ -276,6 +276,12 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+.footer {
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+}
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url("../fonts/glyphicons-halflings-regular.eot");
@@ -6858,5 +6864,6 @@ button.close {
     border: 1px solid #ccc;
     border-radius: 4px;
     text-align: center;
+    margin:auto
 }
 /*# sourceMappingURL=bootstrap.css.map */

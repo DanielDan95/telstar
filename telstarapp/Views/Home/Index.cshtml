@@ -5,23 +5,28 @@
         <div>
             <div>
                 <div>
-                    <div>
+                    <div class="">
                         @using (Html.BeginForm("loginsubmit", "Home", FormMethod.Post))
                         {
+                            <br />
+                            <br />
                             <img src="~/Resources/TelstarLogo.PNG" class="center-block" />
                             <br />
                             <br />
+                            <br />
                             <div>
-                                @Html.TextBoxFor(a => a.Email, new { @class = "form-input" })
-                                <label class="form-label" for="typeEmailX-2">Email</label>
+                                @Html.TextBoxFor(a => a.Email, new { @class = "form-input", @type = "email" })
+                                <label class="form-label center-block" for="typeEmailX-2">Email</label>
                             </div>
-
-                            <div class="form-outline mb-4">
-                                @Html.TextBoxFor(a => a.Password, new { @class = "form-input" })
-                                <label class="form-label" for="typePasswordX-2">Password</label>
+                            <br />
+                            <div>
+                                @Html.TextBoxFor(a => a.Password, new { @class = "form-input", @type = "password" })
+                                <label class="form-label center-block" for="typePasswordX-2">Password</label>
                             </div>
+                            <br />
+                            <br />
+                            <button class="btn btn-lg center-block" type="submit">Login</button>
 
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Pay</button>
                         }
                     </div>
                 </div>
