@@ -1106,6 +1106,7 @@ body {
   line-height: 1.42857143;
   color: #333333;
   background-color: #fff;
+  min-height: 100%;
 }
 input,
 button,
@@ -3728,8 +3729,32 @@ tbody.collapse.in {
   bottom: 100%;
   margin-bottom: 2px;
 }
+.btn-logout {
+    margin-right:0px;
+}
+.logoIcon {
+    max-width: 100%;
+    height:auto
+}
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 90%;
+    float: left;
+    padding: 20px;
+    border: 2px solid red;
+}
+.float-nav {
+    width: 10%;
+    float: left;
+    padding: 20px;
+    border: 2px solid red;
+} 
 @media (min-width: 768px) {
-  .navbar-right .dropdown-menu {
+    .navbar-right .dropdown-menu {
     right: 0;
     left: auto;
   }

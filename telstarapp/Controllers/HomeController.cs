@@ -18,7 +18,7 @@ namespace telstarapp.Controllers
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -36,6 +36,7 @@ namespace telstarapp.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.isLoggedIn = isLoggedIn();
             return View();
         }
 
