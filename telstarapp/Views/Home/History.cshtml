@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "History";
-    List<Order> Orders = new List<Order>; //get orders from DB
+    @*List<Order> Orders = new List<Order>; //get orders from DB*@
 }
 
 <h1>Order History</h1>
@@ -30,7 +30,7 @@
     </thead>
     <tbody id="tableBody">
 
-        @foreach (var order in Orders)
+        @*@foreach (var order in Orders)
         {
         <tr>
             <td>
@@ -57,7 +57,7 @@
             <td>
                 @order.User;
             </td>
-        </tr>
+        </tr>*@
         }
     </tbody>
 
