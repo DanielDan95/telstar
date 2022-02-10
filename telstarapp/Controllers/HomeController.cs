@@ -13,7 +13,7 @@ namespace telstarapp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult History()
         {
             ViewBag.Message = "Your application description page.";
 
