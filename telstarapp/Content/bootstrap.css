@@ -12,6 +12,10 @@ html {
 body {
   margin: 0;
 }
+.searchButton {
+    border-radius: 5px;
+}
+}
 article,
 aside,
 details,
