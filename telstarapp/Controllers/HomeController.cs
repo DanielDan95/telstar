@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using telstarapp.Models;
 using System.Linq;
+using Dijkstra.NET.Graph;
+using Dijkstra.NET.ShortestPath;
 
 namespace telstarapp.Controllers
 {
@@ -114,7 +116,7 @@ namespace telstarapp.Controllers
                 List<City> cities = db.Cities.ToList();
                 List<Connection> connections = db.Connections.ToList();
                 //todo use listsForRouting
-                int price = calculateDistance(cities, connections);
+                int price = shortestRoute(cities, connections);
                 int hours = calculatePrice(cities, connections);
 
 
@@ -122,15 +124,6 @@ namespace telstarapp.Controllers
             }
         }
 
-        private int calculateDistance(List<City> cities, List<Connection> connection)
-        {
-            return 0;
-        }
-
-        private int calculatePrice(List<City> cities, List<Connection> connection)
-        {
-            return 0;
-        }
     }
 
 
