@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using telstarapp.Models;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace telstarapp.Controllers
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -87,8 +88,13 @@ namespace telstarapp.Controllers
         {
             if (isLoggedIn())
             {
+                using (MyEntities db = new MyEntities())
+                {
+                    List<Order> orders = db.Orders.ToList();
+                    ViewBag.foundOrders = orders;
 
-                return View("History");
+                    return View("History");
+                }
             }
             else
             {
