@@ -18,6 +18,19 @@ namespace telstarapp.Controllers
                 return false;
             }
         }
+
+        public bool isAdmin()
+        {
+            if (Session["isAdmin"].Equals(true))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -36,7 +49,7 @@ namespace telstarapp.Controllers
                     if (aUser != null)
                     {
                         Session["UserID"] = aUser.UserId.ToString();
-                        var adminUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                        var adminUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password) && a.Admin != null).FirstOrDefault();
                         if (adminUser != null)
                         {
                             Session["isAdmin"] = true;
@@ -67,6 +80,20 @@ namespace telstarapp.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult History()
+        {
+            if (isLoggedIn())
+            {
+                return View("History");
+            }
+            else
+            {
+                return RedirectToAction("mainPage");
+                
+            }
         }
     }
 }
