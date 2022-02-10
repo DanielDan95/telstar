@@ -26,6 +26,7 @@ namespace telstarapp.Models
         }
     
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Route> Routes { get; set; }

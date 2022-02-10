@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using telstarapp.Models;
 using System.Linq;
+using Dijkstra.NET.Graph;
+using Dijkstra.NET.ShortestPath;
 
 namespace telstarapp.Controllers
 {
@@ -18,8 +21,22 @@ namespace telstarapp.Controllers
                 return false;
             }
         }
+
+        public bool isAdmin()
+        {
+            if (Session["isAdmin"].Equals(true))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public ActionResult Index()
         {
+            ViewBag.isLoggedIn = isLoggedIn();
             return View();
         }
 
@@ -36,7 +53,7 @@ namespace telstarapp.Controllers
                     if (aUser != null)
                     {
                         Session["UserID"] = aUser.UserId.ToString();
-                        var adminUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                        var adminUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password) && a.Admin != null).FirstOrDefault();
                         if (adminUser != null)
                         {
                             Session["isAdmin"] = true;
@@ -68,5 +85,47 @@ namespace telstarapp.Controllers
             Session.Clear();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult History()
+        {
+            if (isLoggedIn())
+            {
+                using (MyEntities db = new MyEntities())
+                {
+                    List<Order> orders = db.Orders.ToList();
+                    ViewBag.foundOrders = orders;
+
+                    return View("History");
+                }
+            }
+            else
+            {
+                return RedirectToAction("mainPage");
+                
+            }
+        }
+
+        public ActionResult checkRoute()
+        {
+            using (MyEntities db = new MyEntities())
+            {
+
+                City startCity = db.Cities.Where(city => city.Name.Equals("<EnterStartCity")).FirstOrDefault();
+                City endCity = db.Cities.Where(city => city.Name.Equals("<EnterEndCity>")).FirstOrDefault();
+
+                List<City> cities = db.Cities.ToList();
+                List<Connection> connections = db.Connections.ToList();
+                //todo use listsForRouting
+                int price = shortestRoute(cities, connections);
+                int hours = calculatePrice(cities, connections);
+
+
+                return View("homePage");
+            }
+        }
+
     }
+
+
 }
