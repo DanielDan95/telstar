@@ -70,6 +70,11 @@ namespace telstarapp.Controllers
         {
             if (isLoggedIn())
             {
+                using (MyEntities db = new MyEntities())
+                {
+                    List<City> cities = db.Cities.ToList();
+                    ViewBag.foundCities = cities;
+                }
                 return View("Main");
             }
             else
