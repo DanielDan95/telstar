@@ -10,45 +10,70 @@
         <div class="float-container">
             <div class="float-contents">
                 <form action="/action_page.php">
-                    <label for="cars">From:</label>
 
-                    <select name="cars" id="cars">
-                        <option value="" disabled selected>Select package start location</option>
-                        @foreach (var city in ViewBag.foundCities)
-                        {
-                            <option value="@city.Name">@city.Name</option>
-                        }
-                    </select>
+                    <span class="row">
+                        <label for="cars">From:</label>
+                        <select class="float-right" name="toCity" id="toCity">
+                            <option value="" disabled selected>Select package start location</option>
+                            @foreach (var city in ViewBag.foundCities)
+                            {
+                                <option value="@city.Name">@city.Name</option>
+                            }
+                        </select>
+                    </span>
+                    <span class="row">
+                        <label for="cars">To:</label>
+                        <select class="float-right" name="fromCity" id="fromCity">
+                            <option value="" disabled selected>Select package destination location</option>
+                            @foreach (var city in ViewBag.foundCities)
+                            {
+                                <option value="@city.Name">@city.Name</option>
+                            }
+                        </select>
+                    </span>
 
-                    <label for="cars">To:</label>
-                    <select name="cars" id="cars">
-                        <option value="" disabled selected>Select package destination location</option>
-                        @foreach (var city in ViewBag.foundCities)
-                        {
-                            <option value="@city.Name">@city.Name</option>
-                        }
-                    </select>
+                    <span class="row">
+                        <label for="weight">Height:</label>
+                        <input class="float-right" type="text" name="Height" placeholder="Height of package">
+                    </span>
+
+                    <span class="row">
+                        <label for="weight">Width:</label>
+                        <input class="float-right" type="text" name="Width" placeholder="Width of package">
+                    </span>
+
+                    <span class="row">
+                        <label for="weight">Depth:</label>
+                        <input class="float-right" type="text" name="Depth" placeholder="Depth of package">
+                    </span>
+
+                    <span class="row">
+                        <label for="weight">Weight:</label>
+                        <input class="float-right" type="text" name="Weight" placeholder="Weight in Kg">
+                    </span>
+                    <span class="row">
+                        <label for="vehicle1">Recommended</label>
+                        <input class="float-right" type="checkbox" id="recommended" name="vehicle1" value="Bike">
+                    </span>
 
 
-                    <label for="vehicle1">Recommended</label>
-                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-
-                    <br><br>
-
-                    <label for="weight">Weight:</label>
-                    <input type="text" id="fname" name="fname" placeholder="Weight in Kg">
-
-                    <br><br>
-                    <span>
-                        <label for="vehicle1">Weapons</label>
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <span class="row">
+                        <h3>Special goods</h3>
+                        <br />
+                        <span class="SpecialGood">
+                            <label for="Weapons">Weapons</label>
+                            <br />  
+                            <input type="checkbox" name="Weapons" value="Bike">
+                        </span>
+                        
                         <label for="vehicle1">Live animals</label>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                         <label for="vehicle1">Cautios goods</label>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                     </span>
 
-                    <br><br>
+                    <br />
+                    <br />
                     <input class="searchButton" , type="button" value="Submit" onclick="location.href = '@Url.Action("checkRoute", "Home")'" />
                 </form>
             </div>

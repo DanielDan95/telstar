@@ -281,7 +281,6 @@ th {
 .footer {
     padding: 10px 10px 10px 10px;
     bottom: 0;
-    width: 100%;
 }
 .imageMap{
     width:100%;
@@ -3747,7 +3746,6 @@ tbody.collapse.in {
     padding: 20px;
     height: 100%;
     width: 100%;
-    border: 2px solid red;
 }
 .float-crate {
     border: 3px solid #fff;
@@ -6127,6 +6125,15 @@ button.close {
   .modal-lg {
     width: 900px;
   }
+}
+.SpecialGood{
+
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
 }
 .tooltip {
   position: absolute;
