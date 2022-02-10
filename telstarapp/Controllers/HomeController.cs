@@ -117,8 +117,8 @@ namespace telstarapp.Controllers
                 List<City> cities = db.Cities.ToList();
                 List<Connection> connections = db.Connections.ToList();
                 //todo use listsForRouting
-                int price = shortestRoute(cities, connections);
-                int hours = calculatePrice(cities, connections);
+                //int price = shortestRoute(cities, connections);
+                //int hours = calculatePrice(cities, connections);
 
 
                 return View("homePage");

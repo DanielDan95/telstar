@@ -30,7 +30,7 @@ namespace telstarapp.Models
     }
     public class TimeAndPrice
     {
-        public TimeAndPrice(double time, double price)
+        public TimeAndPrice(int time, double price)
         {
             this.time = time;
             this.price = price;
@@ -41,7 +41,7 @@ namespace telstarapp.Models
             
         }
 
-        public double time { get; set; }
+        public int time { get; set; }
         public double price { get; set; }
 
     }

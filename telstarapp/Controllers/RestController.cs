@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using telstarapp.Models;
 using telstarapp.theSystem.Connector;
@@ -35,12 +36,21 @@ namespace telstarapp.Controllers
             return Json(responseModel);
         }
 
-        [Route("api/Rest/getPriceAndTimeFromConnector")]
+        [Route("api/Rest/getPriceAndTimeFromOceanic")]
         [HttpGet]
-        public IHttpActionResult getPriceAndTimeFromConnector()
+        public async Task<IHttpActionResult> getPriceAndTimeFromOceanic()
         {
             var integrationService = new IntegrationService();
-            var timeAndPrice = integrationService.GetTimeAndPrice();
+            var timeAndPrice = await integrationService.GetTimeAndPriceOceanic();
+            return Json(timeAndPrice);
+        }
+
+        [Route("api/Rest/getPriceAndTimeFromEastIndia")]
+        [HttpGet]
+        public async Task<IHttpActionResult> getPriceAndTimeFromEastIndia()
+        {
+            var integrationService = new IntegrationService();
+            var timeAndPrice = await integrationService.GetTimeAndPriceEastIndia();
             return Json(timeAndPrice);
         }
 
@@ -55,8 +65,8 @@ namespace telstarapp.Controllers
             double cheapestPrice = SearchModel.from.Length;
             double fastestPrice = cheapestPrice <= SearchModel.to.Length ? SearchModel.to.Length : cheapestPrice + 1;
 
-            double fastestTime = SearchModel.from.Length;
-            double cheapestTime = SearchModel.to.Length;
+            int fastestTime = SearchModel.from.Length;
+            int cheapestTime = SearchModel.to.Length;
 
 
             var myCheapAnser = new TimeAndPrice(cheapestTime, cheapestPrice);
