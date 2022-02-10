@@ -1,27 +1,27 @@
 ﻿enum Cities
 {
-    Addis Abeba,
-    Bahrel Ghazal,
+    AddisAbeba,
+    BahrelGhazal,
     Cairo,
     Congo,
     Dafur,
     Dakar,
-    De Kanariske Øer,
+    DeKanariskeØer,
     Dragebjerget,
-    Guld Kysten,
+    GuldKysten,
     Hvalbugten,
     Kabalo,
-    Kap Guardafui,
-    Kap St. Marie,
+    KapGuardafui,
+    KapStMarie,
     Kapstaden,
     Luanda,
     Marrakesh,
     Mocambique,
     Omdurman,
     Sahara,
-    Sierra Leone,
-    Slave Kysten,
-    St. Helena,
+    SierraLeone,
+    SlaveKysten,
+    StHelena,
     Suakin,
     Tamatave,
     Tanger,
@@ -32,4 +32,6 @@
     Victoriasøen,
     Wadai,
     Zanzibar
+
 }
+
