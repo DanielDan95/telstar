@@ -1,0 +1,37 @@
+﻿enum Cities
+{
+    AddisAbeba,
+    BahrelGhazal,
+    Cairo,
+    Congo,
+    Dafur,
+    Dakar,
+    DeKanariskeØer,
+    Dragebjerget,
+    GuldKysten,
+    Hvalbugten,
+    Kabalo,
+    KapGuardafui,
+    KapStMarie,
+    Kapstaden,
+    Luanda,
+    Marrakesh,
+    Mocambique,
+    Omdurman,
+    Sahara,
+    SierraLeone,
+    SlaveKysten,
+    StHelena,
+    Suakin,
+    Tamatave,
+    Tanger,
+    Timbuktu,
+    Tripoli,
+    Tunis,
+    Victoriafaldene,
+    Victoriasøen,
+    Wadai,
+    Zanzibar
+
+}
+
