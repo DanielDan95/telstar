@@ -30,25 +30,20 @@
             <div class="float-child">
                 <input class="btn btn-logout" , type="button" value="Logout" onclick="location.href = '@Url.Action("logOut", "Home")'" />
                 @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
             </div>
         </div>
-        
+
     }
     else
     {
         <div>
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
         </div>
     }
-
+    <footer class="footer">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

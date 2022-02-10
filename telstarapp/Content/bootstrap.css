@@ -8,12 +8,14 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  height:100%;
 }
 body {
   margin: 0;
 }
 .searchButton {
     border-radius: 5px;
+    right:0px;
 }
 }
 article,
@@ -277,15 +279,17 @@ th {
   }
 }
 .footer {
-    position: fixed;
-    padding: 10px 10px 0px 10px;
+    padding: 10px 10px 10px 10px;
     bottom: 0;
-    width: 100%;
+}
+.imageMap{
+    width:100%;
+    height:auto;
 }
 @font-face {
-  font-family: "Glyphicons Halflings";
-  src: url("../fonts/glyphicons-halflings-regular.eot");
-  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+    font-family: "Glyphicons Halflings";
+    src: url("../fonts/glyphicons-halflings-regular.eot");
+    src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 .glyphicon {
   position: relative;
@@ -3731,6 +3735,7 @@ tbody.collapse.in {
 }
 .btn-logout {
     margin-right:0px;
+    float:right;
 }
 .logoIcon {
     max-width: 100%;
@@ -3739,20 +3744,31 @@ tbody.collapse.in {
 .float-container {
     border: 3px solid #fff;
     padding: 20px;
+    height: 100%;
+    width: 100%;
 }
-
+.float-crate {
+    border: 3px solid #fff;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
 .float-child {
     width: 90%;
     float: left;
     padding: 20px;
-    border: 2px solid red;
 }
 .float-nav {
     width: 10%;
     float: left;
     padding: 20px;
+}
+.float-contents {
+    width: 50%;
+    float: left;
+    padding: 20px;
     border: 2px solid red;
-} 
+}
 @media (min-width: 768px) {
     .navbar-right .dropdown-menu {
     right: 0;
@@ -6109,6 +6125,15 @@ button.close {
   .modal-lg {
     width: 900px;
   }
+}
+.SpecialGood{
+
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
 }
 .tooltip {
   position: absolute;
