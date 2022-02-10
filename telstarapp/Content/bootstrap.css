@@ -132,12 +132,21 @@ button,
 select {
   text-transform: none;
 }
+.form-label{
+    text-align:center;
+}
 button,
 html input[type="button"],
 input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
+input[type="email"] {
+    margin: auto;
+}
+input[type="password"] {
+    margin: auto;
+}
+    input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
 }
 button[disabled],
 html input[disabled] {
@@ -2679,6 +2688,7 @@ output {
   transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  text-align:center;
 }
 .form-control:focus {
   border-color: #66afe9;
@@ -6834,5 +6844,19 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+.form-input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
 }
 /*# sourceMappingURL=bootstrap.css.map */

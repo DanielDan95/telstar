@@ -1,30 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using telstarapp.Models;
+using System.Linq;
 
 namespace telstarapp.Controllers
 {
     public class HomeController : Controller
     {
+        public bool isLoggedIn()
+        {
+            if (Session["UserID"] != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult History()
+        [HttpPost]
+        public ActionResult loginsubmit(User user)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+            if (ModelState.IsValid)
+            {
+                using (MyEntities db = new MyEntities())
+                {
+                    var aUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                    
+                    if (aUser != null)
+                    {
+                        Session["UserID"] = aUser.UserId.ToString();
+                        var adminUser = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                        if (adminUser != null)
+                        {
+                            Session["isAdmin"] = true;
+                        }
+                        return RedirectToAction("mainPage");
+                    }
+                }
+
+            }
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Main()
+        public ActionResult mainPage()
         {
-            ViewBag.Message = "Your contact page.";
+            if (isLoggedIn())
+            {
+                return View("Main");
+            }
+            else
+            {
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+        }
 
-            return View();
+        public ActionResult logOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }
