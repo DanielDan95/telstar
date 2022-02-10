@@ -13,7 +13,7 @@
 
                     <span class="row">
                         <label for="cars">From:</label>
-                        <select class="float-right" name="toCity" id="toCity">
+                        <select class="float-right text-center" name="toCity" id="toCity">
                             <option value="" disabled selected>Select package start location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -23,7 +23,7 @@
                     </span>
                     <span class="row">
                         <label for="cars">To:</label>
-                        <select class="float-right" name="fromCity" id="fromCity">
+                        <select class="float-right text-center" name="fromCity" id="fromCity">
                             <option value="" disabled selected>Select package destination location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -34,22 +34,22 @@
 
                     <span class="row">
                         <label for="weight">Height:</label>
-                        <input class="float-right" type="text" name="Height" placeholder="Height of package">
+                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Width:</label>
-                        <input class="float-right" type="text" name="Width" placeholder="Width of package">
+                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Depth:</label>
-                        <input class="float-right" type="text" name="Depth" placeholder="Depth of package">
+                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Weight:</label>
-                        <input class="float-right" type="text" name="Weight" placeholder="Weight in Kg">
+                        <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg">
                     </span>
                     <span class="row">
                         <label for="vehicle1">Recommended</label>
@@ -57,24 +57,36 @@
                     </span>
 
 
-                    <span class="row">
+                    <div class="row">
                         <h3>Special goods</h3>
                         <br />
-                        <span class="SpecialGood">
-                            <label for="Weapons">Weapons</label>
-                            <br />  
-                            <input type="checkbox" name="Weapons" value="Weapons">
-                        </span>
-                        
-                        <label for="vehicle1">Live animals</label>
-                        <input type="checkbox" id="vehicle1" name="animals" value="animals">
-                        <label for="vehicle1">Cautios goods</label>
-                        <input type="checkbox" id="vehicle1" name="Cautios" value="Cautios">
-                    </span>
+                        <div class="row">
+                            <span class="SpecialGood float-left">
+                                <label for="Weapons">Weapons</label>
+                                <br />
+                                <input type="checkbox"  id="Weapons" name="Weapons" value="Weapons">
+                            </span>
+
+                            <span class="SpecialGood center-block">
+                                <label for="animals">Live animals</label>
+                                <br />
+                                <input type="checkbox" id="animals" name="animals" value="animals">
+                            </span>
+
+                            <span class="SpecialGood float-right">
+                                <label for="vehicle1">Cautios goods</label>
+                                <br />
+                                <input type="checkbox" id="Cautios" name="Cautios" value="Cautios">
+                            </span>
+                        </div>
+
+                    </div>
 
                     <br />
                     <br />
-                    <input class="searchButton" , type="button" value="Submit" onclick="location.href = '@Url.Action("checkRoute", "Home")'" />
+                    <div class="center-block">
+                        <input class="searchButton center-block" , type="button" value="Search" onclick="location.href = '@Url.Action("checkRoute", "Home")'" />
+                    </div>
                 </form>
             </div>
             <div class="float-contents">
@@ -94,7 +106,7 @@
             </span>
         </div>
         <br />  
-        <button class="btn-lg type="submit">Pay</button>
+        <button class="btn-lg type="submit">Place order</button>
 
     </div>
 

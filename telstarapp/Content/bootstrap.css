@@ -14,16 +14,20 @@ body {
   margin: 0;
 }
 .searchButton {
-    border-radius: 5px;
-    right:0px;
-}
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
 }
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
+footer {
+    padding: 10px 10px 10px 10px;
+    bottom: 0;
+},
 header,
 hgroup,
 main,
@@ -137,6 +141,12 @@ select {
 .form-label{
     text-align:center;
 }
+label {
+    font-size:large;
+}
+option{
+    font-size:large;
+}
 button,
 html input[type="button"],
 input[type="reset"],
@@ -162,7 +172,18 @@ input::-moz-focus-inner {
 input {
   line-height: normal;
 }
-input[type="checkbox"],
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+}
 input[type="radio"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -3760,8 +3781,8 @@ tbody.collapse.in {
 }
 .float-nav {
     width: 10%;
+    height:100%;
     float: left;
-    padding: 20px;
 }
 .float-contents {
     width: 50%;
@@ -4725,10 +4746,7 @@ fieldset[disabled] .navbar-default .btn-link:hover,
 fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
-.navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
-}
+
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
 }
@@ -6127,7 +6145,13 @@ button.close {
   }
 }
 .SpecialGood{
-
+    width:33%;
+    text-align:center;
+}
+.Weapons {
+    float: left; 
+    width: 25%;
+    text-align: center;
 }
 .float-right {
     float: right;
