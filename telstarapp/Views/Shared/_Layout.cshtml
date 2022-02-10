@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("History", "History", "Home")</li>
                 </ul>
             </div>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Logout</button>
+            <input class="btn btn-primary btn-lg btn-block", type="button" value="Logout" onclick="location.href = '@Url.Action("logOut", "Home")'" />
         </div>
     </div>
     <div class="container body-content">
