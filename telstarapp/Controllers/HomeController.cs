@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Globalization;
 using System.Web.Mvc;
 using telstarapp.Models;
 using System.Linq;
+using System.Web.UI.WebControls.WebParts;
 using System.Web.WebPages;
 using Dijkstra.NET.Graph;
 using Dijkstra.NET.ShortestPath;
@@ -21,7 +23,7 @@ namespace telstarapp.Controllers
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -142,10 +144,25 @@ namespace telstarapp.Controllers
 
                     Package package = new Package();
                     package.Recommeded = form["Recommended"] == null || form["Recommended"].IsEmpty() ? (byte)0 : (byte)1;
-                    package.WeightInKg = form["Weight"] == null || form["Weight"].IsEmpty() ? 0 : Convert.ToDouble(form["Weight"]);
-                    package.HeightInCm = form["Height"] == null || form["Height"].IsEmpty() ? 0 : Convert.ToInt32(form["Height"]);
-                    package.HeightInCm = form["Width"] == null || form["Width"].IsEmpty() ? 0 : Convert.ToInt32(form["Width"]);
-                    package.HeightInCm = form["Depth"] == null || form["Depth"].IsEmpty() ? 0 : Convert.ToInt32(form["Depth"]);
+                    package.WeightInKg = form["Weight"] == null || form["Weight"].Equals("") ? 0 : Convert.ToDouble(((String) form["Weight"]));
+                    package.HeightInCm = form["Height"] == null || form["Height"].Equals("") ? 0 : Convert.ToInt32(((String) form["Height"]));
+                    package.WidthInCm = form["Width"] == null || form["Width"].Equals("") ? 0 : Convert.ToInt32((String)form["Width"]);
+                    package.DepthInCm = form["Depth"] == null || form["Depth"].Equals("") ? 0 : Convert.ToInt32((String)form["Depth"]);
+
+                    String specialGood = form["specialGood"];
+                    if (specialGood != null)
+                    { 
+                        if (specialGood.Equals("animals"))
+                        {
+                            package.SpecialGoods = 7;
+                        } else if (specialGood.Equals("Cautios"))
+                        {
+                            package.SpecialGoods = 1;
+                        } else if (specialGood.Equals("refrigerated"))
+                        {
+                            package.SpecialGoods = 5;
+                        }
+                    }
 
 
                     Order cheapestOrder = new Order();
