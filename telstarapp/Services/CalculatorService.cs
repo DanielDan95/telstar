@@ -15,12 +15,13 @@ namespace telstarapp.Services
         {
             int price;
             var graph = new Graph<int, string>();
-            for (int i = 0; i < cities.Count; i++)
+            for (int i = 0; i < cities.Count+4; i++)
             {
                 graph.AddNode(i);
             }
             foreach (Connection con in connection)
             {
+                
                 String owner = "";
                 int time = 0;
                 // Converting int? to uint to work with the Dijkstra.NET
@@ -41,39 +42,44 @@ namespace telstarapp.Services
                 else if (con.Owner == 1)
                 {
                     owner = "Oceanic Alliance";
+
                 } else if(con.Owner == 2){
                     owner = "EIT";
+
                 } else
                 {
                     owner = "Unknown";
                 }
-                
                 graph.Connect(castedCity1, castedCity2, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                graph.Connect(castedCity2, castedCity1, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
 
-                
+
+
+
+
             }
             return graph;
         }
-        public Tuple<string, double, int> getShortestRoute(Graph<int, string> graph, int city1, int city2)
+        public Tuple<string, double, int> getShortestRoute(Graph<int, string> graph, City city1, City city2)
         {
             String route = "";
             double price;
             int time;
-
-            int? castCity1 = city1;
+            Console.WriteLine(city1.Name);
+            int? castCity1 = city1.CityID;
             uint castedCity1 = Convert.ToUInt32(castCity1);
-            int? castCity2 = city2;
+            int? castCity2 = city2.CityID;
             uint castedCity2 = Convert.ToUInt32(castCity2);
             
-            ShortestPathResult result = graph.Dijkstra(castedCity1, castedCity2);
+            ShortestPathResult result = graph.Dijkstra(castedCity1, castedCity2); //if break here spelling mistake
             var path = result.GetPath();
 
-            price = result.Distance*3; //price should be changed, on the todo list
-            time = result.Distance * 4; // time should be changed, on the todo list
+            price = result.Distance; //price should be changed, on the todo list
+            time = result.Distance; // time should be changed, on the todo list
             foreach (var item in path)
             {
  
-                route += item;
+                route += " " + item;
                 // get access to database
             }
             

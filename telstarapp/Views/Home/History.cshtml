@@ -1,34 +1,33 @@
-﻿    <h1>Order History</h1>
-    <div>
-        <table class="orders" id="myTable">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>OurPrice</td>
-                    <td>Price to competitors</td>
-                    <td>Hours</td>
-                    <td>PaidStatus</td>
-                    <td>PackageId</td>
-                    <td>UserId</td>
-                    <td>Route</td>
+﻿<h1>Order History</h1>
 
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                @foreach (var order in ViewBag.foundOrders)
-                {
-                <tr>
-                    <td>@order.OrderId</td>
-                    <td>@order.OurPrice</td>
-                    <td>@order.OtherPrice</td>
-                    <td>@order.Hours</td>
-                    <td>@order.PaidStatus</td>
-                    <td>@order.Package</td>
-                    <td>@order.User</td>
-                    <td>@order.Route</td>
-                </tr>
-                }
-            </tbody>
+<table class="orders" id="orders">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>OurPrice</td>
+            <td>Price to competitors</td>
+            <td>Hours</td>
+            <td>PaidStatus</td>
+            <td>PackageId</td>
+            <td>UserId</td>
+            <td>Route</td>
 
-        </table>
-    </div>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var order in ViewBag.foundOrders)
+        {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.OurPrice</td>
+            <td>@order.OtherPrice</td>
+            <td>@order.Hours</td>
+            <td>@order.PaidStatus</td>
+            <td>@order.Package</td>
+            <td>@order.User</td>
+            <td>@order.Route</td>
+        </tr>
+        }
+    </tbody>
+
+    </table>

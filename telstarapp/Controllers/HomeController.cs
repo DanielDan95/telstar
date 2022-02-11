@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Globalization;
 using System.Web.Mvc;
 using telstarapp.Models;
 using System.Linq;
+using System.Web.UI.WebControls.WebParts;
 using System.Web.WebPages;
 using Dijkstra.NET.Graph;
 using Dijkstra.NET.ShortestPath;
+using telstarapp.Services;
 
 namespace telstarapp.Controllers
 {
@@ -128,13 +131,15 @@ namespace telstarapp.Controllers
                 {
                     String toCity = form["toCity"];
                     String fromCity = form["fromCity"];
-                    City startCity = db.Cities.Where(city => city.Name.Equals(toCity)).FirstOrDefault();
-                    City endCity = db.Cities.Where(city => city.Name.Equals(fromCity)).FirstOrDefault();
+                    City startCity = db.Cities.Where(city => city.Name.StartsWith(toCity)).FirstOrDefault();
+                    City endCity = db.Cities.Where(city => city.Name.StartsWith(fromCity)).FirstOrDefault();
 
                     List<City> cities = db.Cities.ToList();
                     List<Connection> connections = db.Connections.ToList();
                     //todo use listsForRouting
-
+                    CalculatorService cs = new CalculatorService();
+                    Graph<int, string> graph = cs.createAndConnectNodes(cities, connections);
+                    Tuple<string, double, int> tuple = cs.getShortestRoute(graph, startCity, endCity);
                     //Cheapest of Route, Order, Package
                     Route cheapestRoute = new Route();
                     //todo after fix algorithm
@@ -142,18 +147,33 @@ namespace telstarapp.Controllers
 
                     Package package = new Package();
                     package.Recommeded = form["Recommended"] == null || form["Recommended"].IsEmpty() ? (byte)0 : (byte)1;
-                    package.WeightInKg = form["Weight"] == null || form["Weight"].IsEmpty() ? 0 : Convert.ToDouble(form["Weight"]);
-                    package.HeightInCm = form["Height"] == null || form["Height"].IsEmpty() ? 0 : Convert.ToInt32(form["Height"]);
-                    package.HeightInCm = form["Width"] == null || form["Width"].IsEmpty() ? 0 : Convert.ToInt32(form["Width"]);
-                    package.HeightInCm = form["Depth"] == null || form["Depth"].IsEmpty() ? 0 : Convert.ToInt32(form["Depth"]);
+                    package.WeightInKg = form["Weight"] == null || form["Weight"].Equals("") ? 0 : Convert.ToDouble(((String) form["Weight"]));
+                    package.HeightInCm = form["Height"] == null || form["Height"].Equals("") ? 0 : Convert.ToInt32(((String) form["Height"]));
+                    package.WidthInCm = form["Width"] == null || form["Width"].Equals("") ? 0 : Convert.ToInt32((String)form["Width"]);
+                    package.DepthInCm = form["Depth"] == null || form["Depth"].Equals("") ? 0 : Convert.ToInt32((String)form["Depth"]);
+
+                    String specialGood = form["specialGood"];
+                    if (specialGood != null)
+                    { 
+                        if (specialGood.Equals("animals"))
+                        {
+                            package.SpecialGoods = 7;
+                        } else if (specialGood.Equals("Cautios"))
+                        {
+                            package.SpecialGoods = 1;
+                        } else if (specialGood.Equals("refrigerated"))
+                        {
+                            package.SpecialGoods = 5;
+                        }
+                    }
 
 
                     Order cheapestOrder = new Order();
                     //todo fix after algorithm
                     cheapestOrder.OrderId = generateId();
-                    cheapestOrder.OurPrice = 55;
+                    cheapestOrder.OurPrice = 1;
                     cheapestOrder.OtherPrice = 66;
-                    cheapestOrder.Hours = 4;
+                    cheapestOrder.Hours = 44;
                     cheapestOrder.PaidStatus = 0;
                     cheapestOrder.User = 888888888;
                     cheapestOrder.Route = "cheapestRoute";
