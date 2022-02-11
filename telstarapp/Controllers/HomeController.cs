@@ -240,7 +240,7 @@ namespace telstarapp.Controllers
                 package.PackageId = generateId();
                 myOrder.Package = package.PackageId;
                 int userId = int.Parse((string)Session["UserID"]);
-
+                myOrder.PaidStatus = form["paidStatus"] == null || form["paidStatus"].IsEmpty() ? (byte)0 : (byte)1;
                 using (MyEntities db = new MyEntities())
                 {
 
