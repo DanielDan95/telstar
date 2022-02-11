@@ -131,13 +131,15 @@ namespace telstarapp.Controllers
                 {
                     String toCity = form["toCity"];
                     String fromCity = form["fromCity"];
-                    City startCity = db.Cities.Where(city => city.Name.Equals(toCity)).FirstOrDefault();
-                    City endCity = db.Cities.Where(city => city.Name.Equals(fromCity)).FirstOrDefault();
+                    City startCity = db.Cities.Where(city => city.Name.StartsWith(toCity)).FirstOrDefault();
+                    City endCity = db.Cities.Where(city => city.Name.StartsWith(fromCity)).FirstOrDefault();
 
                     List<City> cities = db.Cities.ToList();
                     List<Connection> connections = db.Connections.ToList();
                     //todo use listsForRouting
-
+                    CalculatorService cs = new CalculatorService();
+                    Graph<int, string> graph = cs.createAndConnectNodes(cities, connections);
+                    Tuple<string, double, int> tuple = cs.getShortestRoute(graph, startCity, endCity);
                     //Cheapest of Route, Order, Package
                     Route cheapestRoute = new Route();
                     //todo after fix algorithm
