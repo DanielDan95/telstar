@@ -113,41 +113,44 @@
 
                 <table class="orders">
                     <thead>
-                        <tr>
-                            <td>
-                                <h3>Fastest</h3>
-                            </td>
-                            <td>
-                                <input type="radio" id="fastest" name="route" value="fastest">
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <h3>Fastest</h3>
+                        </td>
+                        <td>
+                            <input type="radio" id="fastest" name="route" value="fastest">
+                        </td>
+                    </tr>
                     </thead>
+                @if (Session["hasARoute"] != null)
+                {
                     <tbody>
-                        <tr>
-                            <td>Hours:</td>
-                            <td>@((Session["fastestOrder"] as Order).OrderId)</td>
-                        </tr>
-                        <tr>
-                            <td>Hours:</td>
-                            <td>@((Session["fastestOrder"] as Order).Hours)</td>
-                        </tr>
-                        <tr>
-                            <td>Price:</td>
-                            <td>@((Session["fastestOrder"] as Order).OurPrice)</td>
-                        </tr>
-                        <tr>
-                            <td>Has been paid for:</td>
-                            <td>@((Session["fastestOrder"] as Order).PaidStatus)</td>
-                        </tr>
-                        <tr>
-                            <td>Route:</td>
-                            <td>@((Session["fastestOrder"] as Order).Route)</td>
-                        </tr>
-                        <tr>
-                            <td>UserID:</td>
-                            <td>@((Session["fastestOrder"] as Order).User)</td>
-                        </tr>
+                    <tr>
+                        <td>Hours:</td>
+                        <td>@((Session["fastestOrder"] as Order).OrderId)</td>
+                    </tr>
+                    <tr>
+                        <td>Hours:</td>
+                        <td>@((Session["fastestOrder"] as Order).Hours)</td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td>@((Session["fastestOrder"] as Order).OurPrice)</td>
+                    </tr>
+                    <tr>
+                        <td>Has been paid for:</td>
+                        <td>@((Session["fastestOrder"] as Order).PaidStatus)</td>
+                    </tr>
+                    <tr>
+                        <td>Route:</td>
+                        <td>@((Session["fastestOrder"] as Order).Route)</td>
+                    </tr>
+                    <tr>
+                        <td>UserID:</td>
+                        <td>@((Session["fastestOrder"] as Order).User)</td>
+                    </tr>
                     </tbody>
+                }
                 </table>
             </span>
             <span class="float-contents border">
@@ -162,32 +165,35 @@
                             </td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hours:</td>
-                            <td>@((Session["cheapestOrder"] as Order).OrderId)</td>
-                        </tr>
-                        <tr>
-                            <td>Hours:</td>
-                            <td>@((Session["cheapestOrder"] as Order).Hours)</td>
-                        </tr>
-                        <tr>
-                            <td>Price:</td>
-                            <td>@((Session["cheapestOrder"] as Order).OurPrice)</td>
-                        </tr>
-                        <tr>
-                            <td>Has been paid for:</td>
-                            <td>@((Session["cheapestOrder"] as Order).PaidStatus)</td>
-                        </tr>
-                        <tr>
-                            <td>Route:</td>
-                            <td>@((Session["cheapestOrder"] as Order).Route)</td>
-                        </tr>
-                        <tr>
-                            <td>UserID:</td>
-                            <td>@((Session["cheapestOrder"] as Order).User)</td>
-                        </tr>
-                    </tbody>
+                    @if (Session["hasARoute"] != null)
+                {
+                <tbody>
+                    <tr>
+                        <td>Hours:</td>
+                        <td>@((Session["cheapestOrder"] as Order).OrderId)</td>
+                    </tr>
+                    <tr>
+                        <td>Hours:</td>
+                        <td>@((Session["cheapestOrder"] as Order).Hours)</td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td>@((Session["cheapestOrder"] as Order).OurPrice)</td>
+                    </tr>
+                    <tr>
+                        <td>Has been paid for:</td>
+                        <td>@((Session["cheapestOrder"] as Order).PaidStatus)</td>
+                    </tr>
+                    <tr>
+                        <td>Route:</td>
+                        <td>@((Session["cheapestOrder"] as Order).Route)</td>
+                    </tr>
+                    <tr>
+                        <td>UserID:</td>
+                        <td>@((Session["cheapestOrder"] as Order).User)</td>
+                    </tr>
+                </tbody>
+                }
                 </table>
             </span>
         </div>
