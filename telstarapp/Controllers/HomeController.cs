@@ -193,6 +193,50 @@ namespace telstarapp.Controllers
             return (int)DateTime.Now.ToFileTime();
         }
 
+
+        [HttpPost]
+        public ActionResult submitOrder(FormCollection form)
+        {
+            var test = form["fastest"];
+            
+            using (MyEntities db = new MyEntities())
+            {
+                
+                Order order = createOrder(db);
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("mainPage");
+        }
+        
+        private Order createOrder(MyEntities db)
+        {
+
+
+            var order = new Order();
+            int userId = int.Parse((string) Session["UserID"]);
+            order.OrderId = generateId();
+            order.OtherPrice = 0;
+            order.OurPrice = 0;
+            order.Hours = 1;
+            order.Route = "Hej";
+            order.User1 = db.Users.Where(user => user.UserId.Equals(userId)).FirstOrDefault();
+            order.Package = 1;
+            order.PaidStatus = 0;
+
+            //Package package = (Package) Session["package"];
+            //Order fasterOrder = (Order) Session["fastestOrder"];
+            //Route fastetRoute = (Route) Session["fastestRoute"];
+            //Order cheapestOrder = (Order) Session["cheapestOrder"];
+            //Route route = (Route) Session["cheapestRoute"];
+            
+
+            return order;
+
+
+        }
+
     }
 
 }

@@ -90,6 +90,7 @@
     </div>
 
     <div class="float-container">
+        @using (Html.BeginForm("submitOrder", "Home", FormMethod.Post)) {
         <h2>Results</h2>
         <div class="row">
             <span class="float-contents border">
@@ -101,10 +102,11 @@
                 <input type="radio" id="cheapest" name="route" value="cheapest">
             </span>
         </div>
-        <br />  
-        <button class="btn-lg type="submit">Place order</button>
-
+        <br />
+        <input class="btn-lg" type="submit" value="Place Order" />
+        }
     </div>
+
 
     
 
