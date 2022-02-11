@@ -138,8 +138,10 @@ namespace telstarapp.Controllers
                     List<Connection> connections = db.Connections.ToList();
                     //todo use listsForRouting
                     CalculatorService cs = new CalculatorService();
-                    Graph<int, string> graph = cs.createAndConnectNodes(cities, connections);
-                    Tuple<string, double, int> tuple = cs.getShortestRoute(graph, startCity, endCity);
+                    Graph<int, string> cheapGraph = cs.createAndConnectNodes(cities, connections, "Cheapest");
+                    Tuple<string, double, int> cheapestTuple = cs.getCheapPath(cheapGraph, startCity, endCity);
+                    Graph<int, string> fastestGraph = cs.createAndConnectNodes(cities, connections, "Fastest");
+                    Tuple<string, double, int> fastestTuble = cs.getFastPath(fastestGraph, startCity, endCity);
                     //Cheapest of Route, Order, Package
                     Route cheapestRoute = new Route();
                     //todo after fix algorithm
