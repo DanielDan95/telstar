@@ -1,19 +1,24 @@
-﻿@{
-    ViewBag.Title = "Order delivery";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-
+﻿@using telstarapp.Models;
+@{
+        if (Session["package"]!=null)
+        {
+            var package = (Package)Session["package"];
+        }
+        if (Session["fastestOrder"] != null)
+        {
+            var order = (Order)Session["fastestOrder"];
+        }
+    }
+<h1>Order</h1>
 <div>
     <div>
         <div class="float-container">
             <div class="float-contents">
-                <form action="/action_page.php">
-
+                @using (Html.BeginForm("checkRoute", "Home", FormMethod.Post))
+                {
                     <span class="row">
                         <label for="cars">From:</label>
-                        <select class="float-right" name="toCity" id="toCity">
+                        <select class="float-right text-center" name="fromCity" id="toCity">
                             <option value="" disabled selected>Select package start location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -23,7 +28,7 @@
                     </span>
                     <span class="row">
                         <label for="cars">To:</label>
-                        <select class="float-right" name="fromCity" id="fromCity">
+                        <select class="float-right text-center" name="toCity" id="fromCity">
                             <option value="" disabled selected>Select package destination location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -34,22 +39,22 @@
 
                     <span class="row">
                         <label for="weight">Height:</label>
-                        <input class="float-right" type="text" name="Height" placeholder="Height of package">
+                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Width:</label>
-                        <input class="float-right" type="text" name="Width" placeholder="Width of package">
+                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Depth:</label>
-                        <input class="float-right" type="text" name="Depth" placeholder="Depth of package">
+                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package">
                     </span>
 
                     <span class="row">
                         <label for="weight">Weight:</label>
-                        <input class="float-right" type="text" name="Weight" placeholder="Weight in Kg">
+                        <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg">
                     </span>
                     <span class="row">
                         <label for="vehicle1">Recommended</label>
@@ -57,28 +62,46 @@
                     </span>
 
 
-                    <span class="row">
+                    <div class="row">
                         <h3>Special goods</h3>
                         <br />
-                        <span class="SpecialGood">
-                            <label for="Weapons">Weapons</label>
-                            <br />  
-                            <input type="checkbox" name="Weapons" value="Weapons">
-                        </span>
-                        
-                        <label for="vehicle1">Live animals</label>
-                        <input type="checkbox" id="vehicle1" name="animals" value="animals">
-                        <label for="vehicle1">Cautios goods</label>
-                        <input type="checkbox" id="vehicle1" name="Cautios" value="Cautios">
-                    </span>
+                        <div class="row">
+                            <span class="SpecialGood float-left">
+                                <label for="Weapons">Weapons</label>
+                                <br />
+                                <input type="radio" id="Weapons" name="specialGood" value="Weapons">
+                            </span>
+
+                            <span class="SpecialGood float-left">
+                                <label for="animals">Live animals</label>
+                                <br />
+                                <input type="radio" id="animals" name="specialGood" value="animals">
+                            </span>
+
+                            <span class="SpecialGood float-left">
+                                <label for="Cautios">Cautios goods</label>
+                                <br />
+                                <input type="radio" id="Cautios" name="specialGood" value="Cautios">
+                            </span>
+
+                            <span class="SpecialGood float-left">
+                                <label for="refrigerated">Refrigerated goods</label>
+                                <br />
+                                <input type="radio" id="refrigerated" name="specialGood" value="refrigerated">
+                            </span>
+                        </div>
+
+                    </div>
 
                     <br />
                     <br />
-                    <input class="searchButton" , type="button" value="Submit" onclick="location.href = '@Url.Action("checkRoute", "Home")'" />
-                </form>
+                    <div class="center-block">
+                        <input class="searchButton center-block" type="submit" value="Submit" />
+                    </div>
+                }
             </div>
             <div class="float-contents">
-                <img src="~/Resources/Africa.PNG" class="imageMap"/>
+                <img src="~/Resources/Africa.PNG" class="imageMap" />
             </div>
         </div>
     </div>
@@ -86,19 +109,94 @@
     <div class="float-container">
         <h2>Results</h2>
         <div class="row">
-            <span class="float-contents">
-                Fastest
+            <span class="float-contents border">
+
+                <table class="orders">
+                    <thead>
+                        <tr>
+                            <td>
+                                <h3>Fastest</h3>
+                            </td>
+                            <td>
+                                <input type="radio" id="fastest" name="route" value="fastest">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hours:</td>
+                            <td>@((Session["fastestOrder"] as Order).OrderId)</td>
+                        </tr>
+                        <tr>
+                            <td>Hours:</td>
+                            <td>@((Session["fastestOrder"] as Order).Hours)</td>
+                        </tr>
+                        <tr>
+                            <td>Price:</td>
+                            <td>@((Session["fastestOrder"] as Order).OurPrice)</td>
+                        </tr>
+                        <tr>
+                            <td>Has been paid for:</td>
+                            <td>@((Session["fastestOrder"] as Order).PaidStatus)</td>
+                        </tr>
+                        <tr>
+                            <td>Route:</td>
+                            <td>@((Session["fastestOrder"] as Order).Route)</td>
+                        </tr>
+                        <tr>
+                            <td>UserID:</td>
+                            <td>@((Session["fastestOrder"] as Order).User)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </span>
-            <span class="float-contents">
-                Cheapest
+            <span class="float-contents border">
+                <table class="orders">
+                    <thead>
+                        <tr>
+                            <td>
+                                <h3>Cheapest</h3>
+                            </td>
+                            <td>
+                                <input type="radio" id="cheapest" name="route" value="cheapest">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hours:</td>
+                            <td>@((Session["cheapestOrder"] as Order).OrderId)</td>
+                        </tr>
+                        <tr>
+                            <td>Hours:</td>
+                            <td>@((Session["cheapestOrder"] as Order).Hours)</td>
+                        </tr>
+                        <tr>
+                            <td>Price:</td>
+                            <td>@((Session["cheapestOrder"] as Order).OurPrice)</td>
+                        </tr>
+                        <tr>
+                            <td>Has been paid for:</td>
+                            <td>@((Session["cheapestOrder"] as Order).PaidStatus)</td>
+                        </tr>
+                        <tr>
+                            <td>Route:</td>
+                            <td>@((Session["cheapestOrder"] as Order).Route)</td>
+                        </tr>
+                        <tr>
+                            <td>UserID:</td>
+                            <td>@((Session["cheapestOrder"] as Order).User)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </span>
         </div>
-        <br />  
-        <button class="btn-lg type="submit">Pay</button>
+        <br />
+        <button class="btn-lg type="submit">Place order</button>
 
     </div>
 
-    
+
 
 </div>
 

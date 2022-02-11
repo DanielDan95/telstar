@@ -14,16 +14,20 @@ body {
   margin: 0;
 }
 .searchButton {
-    border-radius: 5px;
-    right:0px;
-}
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
 }
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
+footer {
+    padding: 10px 10px 10px 10px;
+    bottom: 0;
+},
 header,
 hgroup,
 main,
@@ -137,6 +141,12 @@ select {
 .form-label{
     text-align:center;
 }
+label {
+    font-size:large;
+}
+option{
+    font-size:large;
+}
 button,
 html input[type="button"],
 input[type="reset"],
@@ -162,7 +172,39 @@ input::-moz-focus-inner {
 input {
   line-height: normal;
 }
-input[type="checkbox"],
+orders {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.orders td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.orders tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.orders tr:hover {
+    background-color: #ddd;
+}
+.orders th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+input[type="checkbox"] {
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+}
 input[type="radio"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -238,6 +280,7 @@ th {
   }
   thead {
     display: table-header-group;
+    width:100%;
   }
   tr,
   img {
@@ -3760,14 +3803,16 @@ tbody.collapse.in {
 }
 .float-nav {
     width: 10%;
+    height:100%;
     float: left;
-    padding: 20px;
+}
+.border{
+    border: 2px solid black;
 }
 .float-contents {
     width: 50%;
     float: left;
     padding: 20px;
-    border: 2px solid red;
 }
 @media (min-width: 768px) {
     .navbar-right .dropdown-menu {
@@ -4464,6 +4509,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  color:black;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
@@ -4645,30 +4691,21 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
-  background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #555;
-  background-color: #e7e7e7;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
-  color: #ccc;
-  background-color: transparent;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #555;
-  background-color: #e7e7e7;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -4725,46 +4762,38 @@ fieldset[disabled] .navbar-default .btn-link:hover,
 fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
-.navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
-}
+
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
-  background-color: transparent;
+
 }
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  background-color: transparent;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: #080808;
+    background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
 .navbar-inverse .navbar-nav > .disabled > a:focus {
-  color: #444;
-  background-color: transparent;
+    background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  color: #fff;
-  background-color: #080808;
+    background-color: transparent;
 }
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
@@ -6127,7 +6156,13 @@ button.close {
   }
 }
 .SpecialGood{
-
+    width:25%;
+    text-align:center;
+}
+.Weapons {
+    float: left; 
+    width: 25%;
+    text-align: center;
 }
 .float-right {
     float: right;

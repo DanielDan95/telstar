@@ -19,6 +19,7 @@
                     <span class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "mainPage", "Home")</li>
+                            <br />
                             <li>@Html.ActionLink("History", "History", "Home")</li>
                         </ul>
 
@@ -40,10 +41,6 @@
             @RenderBody()
         </div>
     }
-    <footer class="footer">
-        <hr />
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
