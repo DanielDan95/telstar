@@ -1,42 +1,34 @@
 ﻿    <h1>Order History</h1>
-    <label for="mylist"></label>
-    <select id="mylist">
-        <option value="Id">Id</option>
-        <option value="OurPrice">Turnover</option>
-        <option value="OtherPrice">price to others</option>
-        <option value="TotalPrice">Price of order</option>
-        <option value="Hours">Time</option>
-        <option value="EmployeeID">Employee ID</option>
-    </select>
-    <table id="myTable">
-        <thead>
-            <tr>
+    <div>
+        <table class="orders" id="myTable">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>OurPrice</td>
+                    <td>Price to competitors</td>
+                    <td>Hours</td>
+                    <td>PaidStatus</td>
+                    <td>PackageId</td>
+                    <td>UserId</td>
+                    <td>Route</td>
 
-                <td>ID</td>
-                <td>OurPrice</td>
-                <td>Price to competitors</td>
-                <td>Hours</td>
-                <td>PaidStatus</td>
-                <td>PackageId</td>
-                <td>UserId</td>
-                <td>Route</td>
-
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            @foreach (var order in ViewBag.foundOrders)
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                @foreach (var order in ViewBag.foundOrders)
                 {
-                    <tr>
-                        <td>@order.OrderId</td>
-                        <td>@order.OurPrice</td>
-                        <td>@order.OtherPrice</td>
-                        <td>@order.Hours</td>
-                        <td>@order.PaidStatus</td>
-                        <td>@order.Package</td>
-                        <td>@order.User</td>
-                        <td>@order.Route</td>
-                    </tr>
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OurPrice</td>
+                    <td>@order.OtherPrice</td>
+                    <td>@order.Hours</td>
+                    <td>@order.PaidStatus</td>
+                    <td>@order.Package</td>
+                    <td>@order.User</td>
+                    <td>@order.Route</td>
+                </tr>
                 }
-        </tbody>
+            </tbody>
 
-    </table>
+        </table>
+    </div>

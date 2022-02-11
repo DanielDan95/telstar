@@ -1,10 +1,4 @@
-﻿@{
-    ViewBag.Title = "Order delivery";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-
+﻿<h1>Order</h1>
 <div>
     <div>
         <div class="float-container">
@@ -57,28 +51,28 @@
                 </span>
 
 
-                <div class="row">
-                    <h3>Special goods</h3>
-                    <br />
                     <div class="row">
-                        <span class="SpecialGood float-left">
-                            <label for="Weapons">Weapons</label>
-                            <br />
-                            <input type="checkbox" id="Weapons" name="Weapons" value="Weapons">
-                        </span>
+                        <h3>Special goods</h3>
+                        <br />
+                        <div class="row">
+                            <span class="SpecialGood float-left">
+                                <label for="Weapons">Weapons</label>
+                                <br />
+                                <input type="radio"  id="Weapons" name="specialGood" value="Weapons">
+                            </span>
 
-                        <span class="SpecialGood center-block">
-                            <label for="animals">Live animals</label>
-                            <br />
-                            <input type="checkbox" id="animals" name="animals" value="animals">
-                        </span>
+                            <span class="SpecialGood float-left">
+                                <label for="animals">Live animals</label>
+                                <br />
+                                <input type="radio" id="animals" name="specialGood" value="animals">
+                            </span>
 
-                        <span class="SpecialGood float-right">
-                            <label for="vehicle1">Cautios goods</label>
-                            <br />
-                            <input type="checkbox" id="Cautios" name="Cautios" value="Cautios">
-                        </span>
-                    </div>
+                            <span class="SpecialGood float-left">
+                                <label for="Cautios">Cautios goods</label>
+                                <br />
+                                <input type="radio" id="Cautios" name="specialGood" value="Cautios">
+                            </span>
+                        </div>
 
                 </div>
 
@@ -98,11 +92,13 @@
     <div class="float-container">
         <h2>Results</h2>
         <div class="row">
-            <span class="float-contents">
+            <span class="float-contents border">
                 Fastest
+                <input type="radio" id="fastest" name="route" value="fastest">
             </span>
-            <span class="float-contents">
+            <span class="float-contents border">
                 Cheapest
+                <input type="radio" id="cheapest" name="route" value="cheapest">
             </span>
         </div>
         <br />  
