@@ -280,6 +280,7 @@ th {
   }
   thead {
     display: table-header-group;
+    width:100%;
   }
   tr,
   img {
@@ -6155,7 +6156,7 @@ button.close {
   }
 }
 .SpecialGood{
-    width:30%;
+    width:25%;
     text-align:center;
 }
 .Weapons {

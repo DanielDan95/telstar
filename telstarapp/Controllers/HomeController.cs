@@ -151,11 +151,11 @@ namespace telstarapp.Controllers
                     Order cheapestOrder = new Order();
                     //todo fix after algorithm
                     cheapestOrder.OrderId = generateId();
-                    cheapestOrder.OurPrice = 55;
+                    cheapestOrder.OurPrice = 1;
                     cheapestOrder.OtherPrice = 66;
-                    cheapestOrder.Hours = 4;
+                    cheapestOrder.Hours = 44;
                     cheapestOrder.PaidStatus = 0;
-                    cheapestOrder.User = 888888888;
+                    cheapestOrder.User = 111111111;
                     cheapestOrder.Route = "cheapestRoute";
 
 
