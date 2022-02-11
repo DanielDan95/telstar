@@ -35,7 +35,7 @@
           <Property Name="PaidStatus" Type="tinyint" />
           <Property Name="Package" Type="int" />
           <Property Name="User" Type="int" />
-          <Property Name="Route" Type="nchar" MaxLength="10" />
+          <Property Name="Route" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -62,6 +62,8 @@
           </Key>
           <Property Name="SpecialGoodsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FeePercentage" Type="int" />
+          <Property Name="IsSupported" Type="tinyint" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -240,7 +242,7 @@
           <Property Name="PaidStatus" Type="Byte" />
           <Property Name="Package" Type="Int32" />
           <Property Name="User" Type="Int32" />
-          <Property Name="Route" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Route" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Package1" Relationship="Model.FK_Package" FromRole="Order" ToRole="Package" />
           <NavigationProperty Name="User1" Relationship="Model.FK_User" FromRole="Order" ToRole="User" />
         </EntityType>
@@ -271,6 +273,8 @@
           </Key>
           <Property Name="SpecialGoodsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FeePercentage" Type="Int32" />
+          <Property Name="IsSupported" Type="Byte" />
           <NavigationProperty Name="Packages" Relationship="Model.FK_SpecialGoods" FromRole="SpecialGood" ToRole="Package" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -353,7 +357,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -418,6 +422,8 @@
           <EntitySetMapping Name="SpecialGoods">
             <EntityTypeMapping TypeName="Model.SpecialGood">
               <MappingFragment StoreEntitySet="SpecialGoods">
+                <ScalarProperty Name="IsSupported" ColumnName="IsSupported" />
+                <ScalarProperty Name="FeePercentage" ColumnName="FeePercentage" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SpecialGoodsId" ColumnName="SpecialGoodsId" />
               </MappingFragment>

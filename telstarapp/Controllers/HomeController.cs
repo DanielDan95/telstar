@@ -218,19 +218,53 @@ namespace telstarapp.Controllers
         [HttpPost]
         public ActionResult submitOrder(FormCollection form)
         {
-            var test = form["fastest"];
-            
-            using (MyEntities db = new MyEntities())
+            Session.Remove("hasARoute");
+            var test = form["route"];
+            Package package = (Package)Session["package"];
+            Order myOrder = null;
+            Route myRoute = null;
+
+            if (test.Equals("fastest"))
             {
-                
-                Order order = createOrder(db);
-                db.Orders.Add(order);
-                db.SaveChanges();
+                myOrder = (Order)Session["fastestOrder"];
+                myRoute = (Route)Session["fastestRoute"];
             }
-            
+            else
+            {
+                myOrder = (Order)Session["cheapestOrder"];
+                myRoute = (Route)Session["fastestRoute"];
+            }
+
+            if (package != null && myOrder != null && myRoute != null)
+            {
+                package.PackageId = generateId();
+                myOrder.Package = package.PackageId;
+                int userId = int.Parse((string)Session["UserID"]);
+
+                using (MyEntities db = new MyEntities())
+                {
+
+                    db.Packages.Add(package);
+                    db.SaveChanges();
+
+                }
+
+                using (MyEntities db = new MyEntities())
+                {
+                    int packageId = package.PackageId;
+                    myOrder.Package1 = db.Packages.Where(pack => pack.PackageId.Equals(packageId)).FirstOrDefault();
+                    myOrder.User1 = db.Users.Where(user => user.UserId.Equals(userId)).FirstOrDefault();
+                    db.Orders.Add(myOrder);
+                    db.SaveChanges();
+
+                }
+
+            }
+
+
             return RedirectToAction("mainPage");
         }
-        
+
         private Order createOrder(MyEntities db)
         {
 
