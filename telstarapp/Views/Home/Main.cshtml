@@ -9,8 +9,8 @@
     <div>
         <div class="float-container">
             <div class="float-contents">
-                <form action="/action_page.php">
-
+                @using (Html.BeginForm("checkRoute", "Home", FormMethod.Post))
+                {
                     <span class="row">
                         <label for="cars">From:</label>
                         <select class="float-right text-center" name="fromCity" id="toCity">
@@ -21,73 +21,73 @@
                             }
                         </select>
                     </span>
-                    <span class="row">
-                        <label for="cars">To:</label>
-                        <select class="float-right text-center" name="toCity" id="fromCity">
-                            <option value="" disabled selected>Select package destination location</option>
-                            @foreach (var city in ViewBag.foundCities)
-                            {
-                                <option value="@city.Name">@city.Name</option>
-                            }
-                        </select>
-                    </span>
+                <span class="row">
+                    <label for="cars">To:</label>
+                    <select class="float-right text-center" name="toCity" id="fromCity">
+                        <option value="" disabled selected>Select package destination location</option>
+                        @foreach (var city in ViewBag.foundCities)
+                        {
+                            <option value="@city.Name">@city.Name</option>
+                        }
+                    </select>
+                </span>
 
-                    <span class="row">
-                        <label for="weight">Height:</label>
-                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package">
-                    </span>
+                <span class="row">
+                    <label for="weight">Height:</label>
+                    <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package">
+                </span>
 
-                    <span class="row">
-                        <label for="weight">Width:</label>
-                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package">
-                    </span>
+                <span class="row">
+                    <label for="weight">Width:</label>
+                    <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package">
+                </span>
 
-                    <span class="row">
-                        <label for="weight">Depth:</label>
-                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package">
-                    </span>
+                <span class="row">
+                    <label for="weight">Depth:</label>
+                    <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package">
+                </span>
 
-                    <span class="row">
-                        <label for="weight">Weight:</label>
-                        <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg">
-                    </span>
-                    <span class="row">
-                        <label for="vehicle1">Recommended</label>
-                        <input class="float-right" type="checkbox" id="recommended" name="Recommended" value="Recommended">
-                    </span>
+                <span class="row">
+                    <label for="weight">Weight:</label>
+                    <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg">
+                </span>
+                <span class="row">
+                    <label for="vehicle1">Recommended</label>
+                    <input class="float-right" type="checkbox" id="recommended" name="Recommended" value="Recommended">
+                </span>
 
 
+                <div class="row">
+                    <h3>Special goods</h3>
+                    <br />
                     <div class="row">
-                        <h3>Special goods</h3>
-                        <br />
-                        <div class="row">
-                            <span class="SpecialGood float-left">
-                                <label for="Weapons">Weapons</label>
-                                <br />
-                                <input type="checkbox"  id="Weapons" name="Weapons" value="Weapons">
-                            </span>
+                        <span class="SpecialGood float-left">
+                            <label for="Weapons">Weapons</label>
+                            <br />
+                            <input type="checkbox" id="Weapons" name="Weapons" value="Weapons">
+                        </span>
 
-                            <span class="SpecialGood center-block">
-                                <label for="animals">Live animals</label>
-                                <br />
-                                <input type="checkbox" id="animals" name="animals" value="animals">
-                            </span>
+                        <span class="SpecialGood center-block">
+                            <label for="animals">Live animals</label>
+                            <br />
+                            <input type="checkbox" id="animals" name="animals" value="animals">
+                        </span>
 
-                            <span class="SpecialGood float-right">
-                                <label for="vehicle1">Cautios goods</label>
-                                <br />
-                                <input type="checkbox" id="Cautios" name="Cautios" value="Cautios">
-                            </span>
-                        </div>
-
+                        <span class="SpecialGood float-right">
+                            <label for="vehicle1">Cautios goods</label>
+                            <br />
+                            <input type="checkbox" id="Cautios" name="Cautios" value="Cautios">
+                        </span>
                     </div>
 
-                    <br />
-                    <br />
-                    <div class="center-block">
-                        <input class="searchButton center-block" , type="button" value="Search" onclick="location.href = '@Url.Action("checkRoute", "Home")'" />
-                    </div>
-                </form>
+                </div>
+
+                <br />
+                <br />
+                <div class="center-block">
+                    <input  class="searchButton center-block"  type="submit" value="Submit" />
+                </div>
+               }
             </div>
             <div class="float-contents">
                 <img src="~/Resources/Africa.PNG" class="imageMap"/>
