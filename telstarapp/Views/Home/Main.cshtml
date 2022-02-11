@@ -18,7 +18,7 @@
                 {
                     <span class="row">
                         <label for="cars">From:</label>
-                        <select class="float-right text-center" name="fromCity" id="toCity">
+                        <select class="float-right text-center" name="fromCity" id="toCity" required>
                             <option value="" disabled selected>Select package start location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -28,7 +28,7 @@
                     </span>
                     <span class="row">
                         <label for="cars">To:</label>
-                        <select class="float-right text-center" name="toCity" id="fromCity">
+                        <select class="float-right text-center" name="toCity" id="fromCity" required>
                             <option value="" disabled selected>Select package destination location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -39,17 +39,17 @@
 
                     <span class="row">
                         <label for="weight">Height:</label>
-                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package" pattern="[0-9]">
+                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package" pattern="[0-9]{1,10}">
                     </span>
 
                     <span class="row">
                         <label for="weight">Width:</label>
-                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package" pattern="[0-9]">
+                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package" pattern="[0-9]{1,10}">
                     </span>
 
                     <span class="row">
                         <label for="weight">Depth:</label>
-                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package" pattern="[0-9]">
+                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package" pattern="[0-9]{1,10}">
                     </span>
 
                     <span class="row">
@@ -120,7 +120,7 @@
                                 <h3>Fastest</h3>
                             </td>
                             <td>
-                                <input type="radio" id="fastest" name="route" value="fastest">
+                                <input type="radio" id="fastest" name="route" value="fastest" required>
                             </td>
                         </tr>
                     </thead>
@@ -161,7 +161,7 @@
                                 <h3>Cheapest</h3>
                             </td>
                             <td>
-                                <input type="radio" id="cheapest" name="route" value="cheapest">
+                                <input type="radio" id="cheapest" name="route" value="cheapest" required>
                             </td>
                         </tr>
                     </thead>
