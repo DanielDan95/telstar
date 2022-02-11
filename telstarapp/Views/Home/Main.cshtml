@@ -197,9 +197,26 @@
             <br />
             <button class="btn-lg type="submit">Place order</button>
 
+    <div class="float-container">
+        @using (Html.BeginForm("submitOrder", "Home", FormMethod.Post)) {
+        <h2>Results</h2>
+        <div class="row">
+            <span class="float-contents border">
+                Fastest
+                <input type="radio" id="fastest" name="route" value="fastest">
+            </span>
+            <span class="float-contents border">
+                Cheapest
+                <input type="radio" id="cheapest" name="route" value="cheapest">
+            </span>
         </div>
-    }
+        <br />
+        <input class="btn-lg" type="submit" value="Place Order" />
+        }
+    </div>
 
+
+    
 
 </div>
 

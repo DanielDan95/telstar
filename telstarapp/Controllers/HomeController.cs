@@ -138,12 +138,12 @@ namespace telstarapp.Controllers
                     List<Connection> connections = db.Connections.ToList();
                     //todo use listsForRouting
                     CalculatorService cs = new CalculatorService();
-                    Graph<int, string> graph = cs.createAndConnectNodes(cities, connections);
-                    Tuple<string, double, int> tuple = cs.getShortestRoute(graph, startCity, endCity);
-                    //Cheapest of Route, Order, Package
-                    Route cheapestRoute = new Route();
-                    //todo after fix algorithm
-                    cheapestRoute.Cities = "cheapestRoute";
+                    //Route, Price, Hours
+                    Graph<int, string> cheapGraph = cs.createAndConnectNodes(cities, connections, "Cheapest");
+                    Tuple<string, double, int> cheapestTuple = cs.getCheapPath(cheapGraph, startCity, endCity);
+                    Graph<int, string> fastestGraph = cs.createAndConnectNodes(cities, connections, "Fastest");
+                    Tuple<string, double, int> fastestTuble = cs.getFastPath(fastestGraph, startCity, endCity);
+
 
                     Package package = new Package();
                     package.Recommeded = form["Recommended"] == null || form["Recommended"].IsEmpty() ? (byte)0 : (byte)1;
@@ -168,33 +168,33 @@ namespace telstarapp.Controllers
                     }
 
 
+                    //Route, Price, Hours
+                    //Cheapest of Route, Order, Package
+                    Route cheapestRoute = new Route();
+                    cheapestRoute.Cities = cheapestTuple.Item1;
                     Order cheapestOrder = new Order();
-                    //todo fix after algorithm
                     cheapestOrder.OrderId = generateId();
-                    cheapestOrder.OurPrice = 1;
-                    cheapestOrder.OtherPrice = 66;
-                    cheapestOrder.Hours = 44;
+                    cheapestOrder.OurPrice = cheapestTuple.Item2;
+                    cheapestOrder.OtherPrice = 0;
+                    cheapestOrder.Hours =cheapestTuple.Item3;
                     cheapestOrder.PaidStatus = 0;
-                    cheapestOrder.User = 888888888;
-                    cheapestOrder.Route = "cheapestRoute";
+                    cheapestOrder.User = Convert.ToInt32(Session["UserID"].ToString());
+                    cheapestOrder.Route = cheapestTuple.Item1;
 
-
+                    //Route, Price, Hours
                     //Fastest of Route, Order, Package
                     Route fastestRoute = new Route();
-                    //todo after fix algorithm
-                    fastestRoute.Cities = "fastestRoute";
-
-
-
+                    fastestRoute.Cities = fastestTuble.Item1;
                     Order fastestOrder = new Order();
-                    //todo fix after algorithm
                     fastestOrder.OrderId = generateId();
-                    fastestOrder.OurPrice = 55;
-                    fastestOrder.OtherPrice = 66;
-                    fastestOrder.Hours = 4;
+                    fastestOrder.OurPrice = fastestTuble.Item2;
+                    fastestOrder.OtherPrice = 0;
+                    fastestOrder.Hours = cheapestTuple.Item3;
                     fastestOrder.PaidStatus = 0;
-                    fastestOrder.User = 888888888;
-                    fastestOrder.Route = "fastestRoute";
+                    fastestOrder.User = Convert.ToInt32(Session["UserID"].ToString());
+                    fastestOrder.Route = cheapestTuple.Item1;
+
+                    //Set session to keep values
                     Session["hasARoute"] = true;
                     Session["package"] = package;
                     Session["fastestOrder"] = fastestOrder;
@@ -210,7 +210,52 @@ namespace telstarapp.Controllers
 
         public int generateId()
         {
-            return (int)DateTime.Now.ToFileTime();
+            int returnValue = ((int) DateTime.Now.ToFileTime());
+            return Math.Abs(returnValue);
+        }
+
+
+        [HttpPost]
+        public ActionResult submitOrder(FormCollection form)
+        {
+            var test = form["fastest"];
+            
+            using (MyEntities db = new MyEntities())
+            {
+                
+                Order order = createOrder(db);
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("mainPage");
+        }
+        
+        private Order createOrder(MyEntities db)
+        {
+
+
+            var order = new Order();
+            int userId = int.Parse((string) Session["UserID"]);
+            order.OrderId = generateId();
+            order.OtherPrice = 0;
+            order.OurPrice = 0;
+            order.Hours = 1;
+            order.Route = "Hej";
+            order.User1 = db.Users.Where(user => user.UserId.Equals(userId)).FirstOrDefault();
+            order.Package = 1;
+            order.PaidStatus = 0;
+
+            //Package package = (Package) Session["package"];
+            //Order fasterOrder = (Order) Session["fastestOrder"];
+            //Route fastetRoute = (Route) Session["fastestRoute"];
+            //Order cheapestOrder = (Order) Session["cheapestOrder"];
+            //Route route = (Route) Session["cheapestRoute"];
+            
+
+            return order;
+
+
         }
 
     }
