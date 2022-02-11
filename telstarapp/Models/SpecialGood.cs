@@ -22,6 +22,8 @@ namespace telstarapp.Models
     
         public int SpecialGoodsId { get; set; }
         public string Name { get; set; }
+        public Nullable<int> FeePercentage { get; set; }
+        public Nullable<byte> IsSupported { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Package> Packages { get; set; }
