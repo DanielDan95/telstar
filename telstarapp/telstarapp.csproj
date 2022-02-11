@@ -191,6 +191,7 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CalculatorService.cs" />
     <Compile Include="TheSystem\Connector\IntegrationService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using telstarapp.Models;
 using System.Linq;
 using Dijkstra.NET.Graph;
 using Dijkstra.NET.ShortestPath;
+using telstarapp.Services;
 
 namespace telstarapp.Controllers
 {
@@ -116,17 +117,20 @@ namespace telstarapp.Controllers
             using (MyEntities db = new MyEntities())
             {
 
-                City startCity = db.Cities.Where(city => city.Name.Equals("<EnterStartCity")).FirstOrDefault();
-                City endCity = db.Cities.Where(city => city.Name.Equals("<EnterEndCity>")).FirstOrDefault();
-
+                City startCity = db.Cities.Where(city => city.Name.StartsWith("Addis")).FirstOrDefault();
+                City endCity = db.Cities.Where(city => city.Name.StartsWith("Zan")).FirstOrDefault();
                 List<City> cities = db.Cities.ToList();
                 List<Connection> connections = db.Connections.ToList();
                 //todo use listsForRouting
-                //int price = shortestRoute(cities, connections);
-                //int hours = calculatePrice(cities, connections);
+                CalculatorService cs = new CalculatorService();
+               Graph<int, string> graph = cs.createAndConnectNodes(cities, connections);
+                Console.WriteLine(cs);
+
+                Tuple<string, double, int> test = cs.getShortestRoute(graph, startCity, endCity);
 
 
-                return View("homePage");
+
+                return RedirectToAction("mainPage");
             }
         }
 
