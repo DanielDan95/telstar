@@ -13,7 +13,7 @@
 
                     <span class="row">
                         <label for="cars">From:</label>
-                        <select class="float-right text-center" name="toCity" id="toCity">
+                        <select class="float-right text-center" name="fromCity" id="toCity">
                             <option value="" disabled selected>Select package start location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
@@ -23,7 +23,7 @@
                     </span>
                     <span class="row">
                         <label for="cars">To:</label>
-                        <select class="float-right text-center" name="fromCity" id="fromCity">
+                        <select class="float-right text-center" name="toCity" id="fromCity">
                             <option value="" disabled selected>Select package destination location</option>
                             @foreach (var city in ViewBag.foundCities)
                             {
