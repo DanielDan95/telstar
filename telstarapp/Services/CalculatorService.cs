@@ -11,7 +11,7 @@ namespace telstarapp.Services
     public class CalculatorService
     {
 
-        public Graph<int, string> createAndConnectNodes(List<City> cities, List<Connection> connection)
+        public Graph<int, string> createAndConnectNodes(List<City> cities, List<Connection> connection, string weight)
         {
             int price;
             var graph = new Graph<int, string>();
@@ -37,6 +37,15 @@ namespace telstarapp.Services
                     owner = "Telstar Logistics";
                     time = (int)(con.NumberOfSegments * con.TimeOfOneSegmentInHours); // changing datatype from int? to int, and calulating the hours
                     price = (int)Math.Ceiling((double)(con.NumberOfSegments * Math.Ceiling((double)con.PriceOfOneSegment))); // changing datatype from double? to int and calcuating the price
+                    if(weight == "Cheapest")
+                    {
+                        graph.Connect(castedCity1, castedCity2, price, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                        graph.Connect(castedCity2, castedCity1, price, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                    } else
+                    {
+                        graph.Connect(castedCity1, castedCity2, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                        graph.Connect(castedCity2, castedCity1, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                    }
 
                 }
                 else if (con.Owner == 1)
@@ -50,8 +59,7 @@ namespace telstarapp.Services
                 {
                     owner = "Unknown";
                 }
-                graph.Connect(castedCity1, castedCity2, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
-                graph.Connect(castedCity2, castedCity1, time, "edge between " + con.City1 + " and " + con.City2 + " and it's owned by " + owner);
+                
 
 
 
@@ -60,7 +68,7 @@ namespace telstarapp.Services
             }
             return graph;
         }
-        public Tuple<string, double, int> getShortestRoute(Graph<int, string> graph, City city1, City city2)
+        public Tuple<string, double, int> getCheapPath(Graph<int, string> graph, City city1, City city2)
         {
             String route = "";
             double price;
@@ -74,8 +82,8 @@ namespace telstarapp.Services
             ShortestPathResult result = graph.Dijkstra(castedCity1, castedCity2); //if break here spelling mistake
             var path = result.GetPath();
 
-            price = result.Distance; //price should be changed, on the todo list
-            time = result.Distance; // time should be changed, on the todo list
+            price = result.Distance; //price should be changed, on the todo list. 3 is 75% 4.
+            time = result.Distance/3*4; // time should be changed, on the todo list
             foreach (var item in path)
             {
  
@@ -84,40 +92,39 @@ namespace telstarapp.Services
             }
             
 
-            var shortestPath = new Tuple<string, double, int>(route, price, time);
+            var pathing = new Tuple<string, double, int>(route, price, time);
 
-            return shortestPath;
+            return pathing;
         }
-        //Cheapest is the exact same as the one above, because we are not able to get answers from all our competitors
-        public Tuple<string, double, int> getCheapestRoute(Graph<int, string> graph, int city1, int city2)
+        public Tuple<string, double, int> getFastPath(Graph<int, string> graph, City city1, City city2)
         {
             String route = "";
             double price;
             int time;
-
-            int? castCity1 = city1;
+            Console.WriteLine(city1.Name);
+            int? castCity1 = city1.CityID;
             uint castedCity1 = Convert.ToUInt32(castCity1);
-            int? castCity2 = city2;
+            int? castCity2 = city2.CityID;
             uint castedCity2 = Convert.ToUInt32(castCity2);
 
-            ShortestPathResult result = graph.Dijkstra(castedCity1, castedCity2);
+            ShortestPathResult result = graph.Dijkstra(castedCity1, castedCity2); //if break here spelling mistake
             var path = result.GetPath();
 
-            price = result.Distance * 3; //price should be changed, on the todo list
-            time = result.Distance * 4; // time should be changed, on the todo list
+            price = result.Distance * 0.75; //price should be changed, on the todo list. 3 is 75% 4.
+            time = result.Distance; // time should be changed, on the todo list
             foreach (var item in path)
             {
 
-                route += item;
+                route += " " + item;
                 // get access to database
             }
 
 
-            var shortestPath = new Tuple<string, double, int>(route, price, time);
+            var pathing = new Tuple<string, double, int>(route, price, time);
 
-            return shortestPath;
+            return pathing;
         }
-
+        //Cheapest is the exact same as the one above, because we are not able to get answers from all our competitors
 
 
     }
