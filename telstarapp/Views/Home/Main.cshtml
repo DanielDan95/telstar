@@ -39,22 +39,22 @@
 
                     <span class="row">
                         <label for="weight">Height:</label>
-                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package" pattern="[0-9]{1,10}">
+                        <input class="float-right text-center" type="text" name="Height" id="Height" placeholder="Height of package" pattern="[0-9]{1,10}" required>
                     </span>
 
                     <span class="row">
                         <label for="weight">Width:</label>
-                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package" pattern="[0-9]{1,10}">
+                        <input class="float-right text-center" type="text" name="Width" id="Width" placeholder="Width of package" pattern="[0-9]{1,10}" required>
                     </span>
 
                     <span class="row">
                         <label for="weight">Depth:</label>
-                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package" pattern="[0-9]{1,10}">
+                        <input class="float-right text-center" type="text" name="Depth" id="Depth" placeholder="Depth of package" pattern="[0-9]{1,10}" required>
                     </span>
 
                     <span class="row">
                         <label for="weight">Weight:</label>
-                        <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg" pattern="[0-9]{1,10}">
+                        <input class="float-right text-center" type="text" name="Weight" id="Weight" placeholder="Weight in Kg" pattern="[0-9]{1,10}" required>
                     </span>
                     <span class="row">
                         <label for="vehicle1">Recommended</label>
@@ -127,10 +127,6 @@
 
                     <tbody>
                         <tr>
-                            <td>OrderID:</td>
-                            <td>@((Session["fastestOrder"] as Order).OrderId)</td>
-                        </tr>
-                        <tr>
                             <td>Hours:</td>
                             <td>@((Session["fastestOrder"] as Order).Hours)</td>
                         </tr>
@@ -167,10 +163,6 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Hours:</td>
-                            <td>@((Session["cheapestOrder"] as Order).OrderId)</td>
-                        </tr>
                         <tr>
                             <td>Hours:</td>
                             <td>@((Session["cheapestOrder"] as Order).Hours)</td>
